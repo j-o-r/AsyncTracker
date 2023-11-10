@@ -46,10 +46,10 @@ test('getTypeDescription', () => {
 });
 test('addCustomType', () => {
 	// Case insensitive
-	// new
+	// new type
 	tracker.addCustomType('CuStOMPROMISe', 'Custom promise type')
 	assert.equal(tracker.getTypeDescription('CUSTOMPROMISE'), 'Custom promise type');
-  // Overwrite
+	// Overwrite
 	tracker.addCustomType('SCRIPT', 'vm context')
 	assert.equal(tracker.getTypeDescription('script'), 'vm context');
 	active = tracker.report();
@@ -58,20 +58,20 @@ test('addCustomType', () => {
 
 test('enable - filter', () => {
 	try {
-	  tracker.enable('INVALID_TYPE');
-	  assert.unreachable('should have thrown, Unknown type');
+		tracker.enable('INVALID_TYPE');
+		assert.unreachable('should have thrown, Unknown type');
 	} catch (err) {
-	  assert.match(err.message, 'Unknown type: INVALID_TYPE');
-	}	
+		assert.match(err.message, 'Unknown type: INVALID_TYPE');
+	}
 	tracker.enable('PROMISE');
-	//-- // A new promise
+	// A new promise
 	let externalResolve; // to resolve a promise from the outside
 	const p = new Promise((resolve, reject) => {
 		externalResolve = resolve
 	});
 	active = tracker.report();
 	assert.equal(active, 1);
-	let trackerRes = tracker.getUnresolved('promise'); 
+	let trackerRes = tracker.getUnresolved('promise');
 	assert.equal(trackerRes.length, 1);
 	assert.equal(trackerRes[0].type, 'PROMISE');
 	// // Resolve the outstanding Promise
@@ -90,7 +90,7 @@ test('enable : filter does not register a Promise', () => {
 	});
 	active = tracker.report();
 	assert.equal(active, 0);
-	// still resovle the unregistered but unresolved promise
+	// still resolve the unregistered but unresolved promise
 	externalResolve();
 	tracker.disable();
 });
@@ -107,10 +107,10 @@ test('enable : register all', () => {
 	}, 500)
 	active = tracker.report();
 	assert.equal(active, 2);
-  assert.equal(tracker.getUnresolved('TIMEOUT').length, 1);
-  assert.equal(tracker.getUnresolved('PROMISE').length, 1);
-  assert.equal(tracker.getUnresolved().length, 2);
-  // Resolve the outstanding promise
+	assert.equal(tracker.getUnresolved('TIMEOUT').length, 1);
+	assert.equal(tracker.getUnresolved('PROMISE').length, 1);
+	assert.equal(tracker.getUnresolved().length, 2);
+	// Resolve the outstanding promise
 	externalResolve();
 	tracker.disable();
 });

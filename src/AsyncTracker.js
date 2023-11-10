@@ -119,7 +119,6 @@ class AsyncTracker {
 	/** 
 	* Enables tracking of asynchronous methods. Optionally, only methods of a specified type can be tracked.	
 	* @param {string} [type] - optional only register async methods from a specific type 
-	* 
 	*/
 	enable(type = '') {
 		type = type.toUpperCase();
