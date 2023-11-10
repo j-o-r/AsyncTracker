@@ -1,0 +1,29 @@
+{
+  "name": "async-tracker",
+  "author": "Jorrit Duin <jorrit.duin@gmail.com>",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "Keep track on unresolved async methods/promises",
+  "main": "src/AsyncTracker.js",
+  "scripts": {
+    "test": "test/test.js",
+    "install:test": "npm pack && npm i async-tracker-0.0.1.tgz -g"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/j-o-r/sh.git"
+  },
+  "license": "Apache License, Version 2.0",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.8.10",
+    "uvu": "^0.5.6"
+  },
+  "bugs": {
+    "url": "https://github.com/j-o-r/sh/issues"
+  },
+  "homepage": "https://github.com/j-o-r/sh"
+}
