@@ -54,25 +54,23 @@ let TYPES = {
 	WRITEWRAP: 'Used by process.stdout and process.stderr',
 	SHUTDOWNWRAP: 'Used by socket.end()',
 };
-
 /*
-const resourceTypes = [
-		'Promise',
-		'Timeout',
-		'Immediate',
-		'TCPWrap',
-		'TCPSERVERWRAP',
-		'UDPWrap',
-		'FSReqCallback',
-		'HTTPParser',
-		'PipeWrap',
-		'PipeConnectWrap',
-		'StreamWrap',
-		'TtyWrap',
-		'Process',
-		'SignalWrap',
-		'TimerWrap'
-];
+- resourceTypes -
+	'Promise',
+	'Timeout',
+	'Immediate',
+	'TCPWrap',
+	'TCPSERVERWRAP',
+	'UDPWrap',
+	'FSReqCallback',
+	'HTTPParser',
+	'PipeWrap',
+	'PipeConnectWrap',
+	'StreamWrap',
+	'TtyWrap',
+	'Process',
+	'SignalWrap',
+	'TimerWrap'
 */
 const getTypeDescription = (type) => {
 	if (TYPES[type]) return TYPES[type];
@@ -88,11 +86,15 @@ class AsyncTracker {
 	#hook;
 	constructor() {
 	}
-	/** register the hook */
+	/** 
+	* 'arm' the registration of async methods
+	* @private 
+	*/
 	#arm() {
 		if (this.#hook) {
 			this.#hook.disable();
 		}
+		this.#storage.clear();
 		const storage = this.#storage;
 		const filter = this.#filter
 		this.#hook = async_hooks.createHook({
@@ -115,7 +117,6 @@ class AsyncTracker {
 	}
 
 	/** 
-	* 
 	* Enables tracking of asynchronous methods. Optionally, only methods of a specified type can be tracked.	
 	* @param {string} [type] - optional only register async methods from a specific type 
 	* 
