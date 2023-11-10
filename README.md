@@ -5,7 +5,7 @@ The `AsyncTracker` provides a mechanism for tracking asynchronous operations in 
 ## Install
 
 ```shell
-npm i asynctracker --save
+npm i @j-o-r/asynctracker --save
 ```
 
 ## Constructor
@@ -45,7 +45,7 @@ npm i asynctracker --save
 ## Usage Example
 
 ```javascript
-import AsyncTracker from 'asynctracker';
+import AsyncTracker from '@j-o-r/asynctracker';
 
 const tracker = new AsyncTracker();
 tracker.enable();
