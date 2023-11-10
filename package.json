@@ -2,7 +2,7 @@
   "name": "@j-o-r/asynctracker",
   "author": "Jorrit Duin <jorrit.duin@gmail.com>",
   "type": "module",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Keep track on unresolved async methods/promises",
   "main": "src/AsyncTracker.js",
   "scripts": {
@@ -25,5 +25,17 @@
   "bugs": {
     "url": "https://github.com/j-o-r/AsyncTracker/issues"
   },
+  "keywords": [
+    "promise",
+    "tracking",
+    "async_hooks",
+    "asynchronous tracking",
+    "debugging",
+    "nodejs",
+    "sync operations",
+    "promise tracking",
+    "diagnostics",
+    "resource tracking"
+  ],
   "homepage": "https://github.com/j-o-r"
 }
