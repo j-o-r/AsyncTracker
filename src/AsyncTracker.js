@@ -25,7 +25,7 @@ import async_hooks from 'async_hooks';
  * @property {string} stack - The call stack trace when the async operation was initialized.
  * @property {Promise|Timeout|Immediate|TCPWrap|TCPSERVERWRAP|UDPWrap|FSReqCallback|HTTPParser|PipeWrap|PipeConnectWrap|StreamWrap|TtyWrap|Process|SignalWrap|TimerWrap} resource - The Promise object associated with this operation, including its state and async IDs.
  */
-let TYPES = {
+const TYPES = {
 	TIMERWRAP: 'setTimeout(), setInterval()',
 	PROMISE: 'Promise',
 	IMMEDIATE: 'setImmediate()',
@@ -55,7 +55,7 @@ let TYPES = {
 	SHUTDOWNWRAP: 'Used by socket.end()',
 };
 /*
-- resourceTypes -
+--- resourceTypes ---
 	'Promise',
 	'Timeout',
 	'Immediate',

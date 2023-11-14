@@ -48,7 +48,7 @@ test('addCustomType', () => {
 	// Case insensitive
 	// new type
 	tracker.addCustomType('CuStOMPROMISe', 'Custom promise type')
-	assert.equal(tracker.getTypeDescription('CUSTOMPROMISE'), 'Custom promise type');
+	assert.equal(tracker.getTypeDescription('cUSTOmPROMISE'), 'Custom promise type');
 	// Overwrite
 	tracker.addCustomType('SCRIPT', 'vm context')
 	assert.equal(tracker.getTypeDescription('script'), 'vm context');
@@ -102,7 +102,7 @@ test('enable : register all', () => {
 	const p = new Promise((resolve, reject) => {
 		externalResolve = resolve
 	});
-	setTimeout(() => {
+	const to = setTimeout(() => {
 		// tracker.report(true);
 	}, 500)
 	active = tracker.report();
@@ -112,6 +112,12 @@ test('enable : register all', () => {
 	assert.equal(tracker.getUnresolved().length, 2);
 	// Resolve the outstanding promise
 	externalResolve();
+	// 'resolve' the timeout.
+	clearTimeout(to);
+	active = tracker.report();
+	assert.equal(active, 1);
+	// Timeout is 'cleared' however, it is garbage collected by V8.
+	assert.equal(tracker.getUnresolved('TIMEOUT').length, 1);
 	tracker.disable();
 });
 test.run();
